@@ -67,6 +67,14 @@ namespace CheckoutKata
             chk.Scan("A");
             Assert.AreEqual(130, chk.GetTotal());
         }
+        [TestMethod]
+        public void Scan2AItemsAndBShouldReturn45()
+        {
+            var chk = new Checkout();
+            chk.Scan("B");
+            chk.Scan("B");
+            Assert.AreEqual(45, chk.GetTotal());
+        }
     }
 
     public class Checkout : ICheckout
@@ -82,6 +90,10 @@ namespace CheckoutKata
             if (scannedItems.FindAll(x => x == "A").Count() == 3)
             {
                 _total -= 20;
+            }
+            if (scannedItems.FindAll(x => x == "B").Count() == 2)
+            {
+                _total -= 15;
             }
         }
 
