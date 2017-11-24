@@ -54,7 +54,7 @@ namespace CheckoutKata
         private int _total;
         public void Scan(string sku)
         {
-            _total = ProductCollInit.products.Find(m => m.Name == sku).Price;           
+            _total += ProductCollInit.products.Find(m => m.Name == sku).Price;           
         }
 
         public int GetTotal()
