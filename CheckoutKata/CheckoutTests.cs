@@ -156,6 +156,7 @@ namespace CheckoutKata
             if (scannedItems.FindAll(x => x == sku).Count() == product.NumberOfItemsForDiscount)
             {
                 _total -= product.DiscountedPrice;
+                scannedItems.RemoveAll(x => x == sku);
             }
         }
 
