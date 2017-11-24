@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CheckoutKata
 {
@@ -47,6 +48,7 @@ namespace CheckoutKata
             chk.Scan("B");
             Assert.AreEqual(80, chk.GetTotal());
         }
+
         [TestMethod]
         public void ScanAItemAndAShouldReturn80()
         {
@@ -55,6 +57,7 @@ namespace CheckoutKata
             chk.Scan("A");
             Assert.AreEqual(100, chk.GetTotal());
         }
+
         [TestMethod]
         public void Scan3AItemsAndAShouldReturn130()
         {
@@ -66,13 +69,20 @@ namespace CheckoutKata
         }
     }
 
-    public class Checkout
+    public class Checkout : ICheckout
     {
         private int _total;
+        public List<string> scannedItems = new List<string>();
+
         public void Scan(string sku)
         {
             var product = ProductCollInit.products.Find(m => m.Name == sku);
-            _total += product.Price;           
+            scannedItems.Add(sku);
+            _total += product.Price;
+            if (scannedItems.FindAll(x => x == "A").Count() == 3)
+            {
+                _total -= 20;
+            }
         }
 
         public int GetTotal()
