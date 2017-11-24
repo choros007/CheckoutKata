@@ -13,6 +13,14 @@ namespace CheckoutKata
             chk.Scan("B");
             Assert.AreEqual(50, chk.GetTotal());
         }
+
+        [TestMethod]
+        public void ScanBItemShouldReturn30()
+        {
+            var chk = new Checkout();
+            chk.Scan("B");
+            Assert.AreEqual(30, chk.GetTotal());
+        }
     }
 
     public class Checkout
