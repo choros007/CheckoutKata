@@ -47,6 +47,23 @@ namespace CheckoutKata
             chk.Scan("B");
             Assert.AreEqual(80, chk.GetTotal());
         }
+        [TestMethod]
+        public void ScanAItemAndAShouldReturn80()
+        {
+            var chk = new Checkout();
+            chk.Scan("A");
+            chk.Scan("A");
+            Assert.AreEqual(100, chk.GetTotal());
+        }
+        [TestMethod]
+        public void Scan3AItemsAndAShouldReturn130()
+        {
+            var chk = new Checkout();
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            Assert.AreEqual(130, chk.GetTotal());
+        }
     }
 
     public class Checkout
@@ -54,7 +71,8 @@ namespace CheckoutKata
         private int _total;
         public void Scan(string sku)
         {
-            _total += ProductCollInit.products.Find(m => m.Name == sku).Price;           
+            var product = ProductCollInit.products.Find(m => m.Name == sku);
+            _total += product.Price;           
         }
 
         public int GetTotal()
