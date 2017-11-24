@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace CheckoutKata
 {
@@ -44,22 +45,7 @@ namespace CheckoutKata
         private int _total;
         public void Scan(string sku)
         {
-            if(sku == "A")
-            {
-                _total = 50;
-            }
-            else if(sku == "B")
-            {
-                _total = 30;
-            }
-            else if (sku == "C")
-            {
-                _total = 20;
-            }
-            else if (sku == "D")
-            {
-                _total = 15;
-            }
+            _total = ProductCollInit.products.Find(m => m.Name == sku).Price;           
         }
 
         public int GetTotal()
@@ -73,4 +59,38 @@ namespace CheckoutKata
         void Scan(string sku);
         int GetTotal();
     }
+
+    public class Product
+    {
+        public string Name { get; set; }
+        public int Price { get; set; }
+    }
+
+    public static class ProductCollInit
+    {
+        public static List<Product> products = new List<Product>
+        {
+            new Product
+            {
+                Name = "A",
+                Price = 50
+            },
+            new Product
+            {
+                Name = "B",
+                Price = 30
+            },
+            new Product
+            {
+                Name = "C",
+                Price = 20
+            },
+            new Product
+            {
+                Name = "D",
+                Price = 15
+            }
+        };
+   }
+
 }
