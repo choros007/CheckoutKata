@@ -19,7 +19,7 @@ namespace CheckoutKata
     {
         public int Scan(string sku)
         {
-            return 0;
+            return 50;
         }
     }
 }
