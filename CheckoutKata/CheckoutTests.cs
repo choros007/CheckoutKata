@@ -75,6 +75,72 @@ namespace CheckoutKata
             chk.Scan("B");
             Assert.AreEqual(45, chk.GetTotal());
         }
+        [TestMethod]
+        public void Scan3AItemsAnd1BItemShouldReturn160()
+        {
+            var chk = new Checkout();
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("B");
+            Assert.AreEqual(160, chk.GetTotal());
+        }
+        [TestMethod]
+        public void Scan3AItemsAnd2BItemShouldReturn175()
+        {
+            var chk = new Checkout();
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("B");
+            chk.Scan("B");
+            Assert.AreEqual(175, chk.GetTotal());
+        }
+        [TestMethod]
+        public void Scan4AItemsAnd2BItemShouldReturn225()
+        {
+            var chk = new Checkout();
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("B");
+            chk.Scan("B");
+            Assert.AreEqual(225, chk.GetTotal());
+        }
+        [TestMethod]
+        public void Scan6AItemsAnd2BItemShouldReturn305()
+        {
+            var chk = new Checkout();
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("B");
+            chk.Scan("B");
+            Assert.AreEqual(305, chk.GetTotal());
+        }
+        [TestMethod]
+        public void Scan7AItemsAnd2BItemAnd2DItemsAnd2cItemsShouldReturn425()
+        {
+            var chk = new Checkout();
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("A");
+            chk.Scan("B");
+            chk.Scan("B");
+            chk.Scan("C");
+            chk.Scan("C");
+            chk.Scan("D");
+            chk.Scan("D");
+            Assert.AreEqual(425, chk.GetTotal());
+        }
     }
 
     public class Checkout : ICheckout
