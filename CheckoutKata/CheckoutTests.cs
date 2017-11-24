@@ -87,13 +87,9 @@ namespace CheckoutKata
             var product = ProductCollInit.products.Find(m => m.Name == sku);
             scannedItems.Add(sku);
             _total += product.Price;
-            if (scannedItems.FindAll(x => x == "A").Count() == 3)
+            if (scannedItems.FindAll(x => x == sku).Count() == product.NumberOfItemsForDiscount)
             {
-                _total -= 20;
-            }
-            if (scannedItems.FindAll(x => x == "B").Count() == 2)
-            {
-                _total -= 15;
+                _total -= product.DiscountedPrice;
             }
         }
 
@@ -113,6 +109,8 @@ namespace CheckoutKata
     {
         public string Name { get; set; }
         public int Price { get; set; }
+        public int DiscountedPrice { get; set; }
+        public int NumberOfItemsForDiscount { get; set; }
     }
 
     public static class ProductCollInit
@@ -122,24 +120,31 @@ namespace CheckoutKata
             new Product
             {
                 Name = "A",
-                Price = 50
+                Price = 50,
+                DiscountedPrice = 20,
+                NumberOfItemsForDiscount = 3
             },
             new Product
             {
                 Name = "B",
-                Price = 30
+                Price = 30,
+                DiscountedPrice = 15,
+                NumberOfItemsForDiscount = 2
             },
             new Product
             {
                 Name = "C",
-                Price = 20
+                Price = 20,
+                DiscountedPrice = 0,
+                NumberOfItemsForDiscount = 0
             },
             new Product
             {
                 Name = "D",
-                Price = 15
+                Price = 15,
+                DiscountedPrice = 0,
+                NumberOfItemsForDiscount = 0
             }
         };
-   }
-
+    }
 }
