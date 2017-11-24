@@ -6,9 +6,20 @@ namespace CheckoutKata
     [TestClass]
     public class CheckoutTests
     {
+
         [TestMethod]
-        public void TestMethod1()
+        public void ScanAItemShouldReturn50()
         {
+            var chk = new Checkout();
+            Assert.AreEqual(50, chk.Scan("A"));
+        }
+    }
+
+    public class Checkout
+    {
+        public int Scan(string sku)
+        {
+            return 0;
         }
     }
 }
